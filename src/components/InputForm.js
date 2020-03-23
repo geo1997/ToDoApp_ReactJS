@@ -6,10 +6,16 @@ import Typography from '@material-ui/core/Typography'
 import AddIcon from '@material-ui/icons/Add'
 
 
-import { borders } from '@material-ui/system';
 import Card from '@material-ui/core/Card';
 
-import Icon from '@material-ui/core/Icon';
+const styles = {
+    container: {
+
+        width:'40%',
+         marginLeft:270,
+        background:'#76ff03'
+    }
+};
 
 
 
@@ -17,15 +23,17 @@ class InputForm extends Component {
 
 
     render() {
+        const { newItem, addItem,handleInput } =this.props;
         return (
                 <div>
                     <Container maxWidth="md" >
 
-                        <Typography component="div" style={{  borderColor:'#00c853',height: '50vh' }}>
+                        <Typography component="div" style={{  borderColor:'#00c853',height: '50vh' ,marginTop:15}}>
                             <Card   style={{  height: '30vh' }}>
                             <Typography variant="h3"  color="secondary"  style={{fontFamily:'Roboto'}}>
                                Input Todo
                             </Typography>
+                                <form onSubmit={addItem}>
                     <TextField
 
                         id="outlined-full-width"
@@ -40,22 +48,34 @@ class InputForm extends Component {
                         }}
                         size="medium"
                         variant="outlined"
+                        value={newItem}
+                        onChange={handleInput}
+
                     />
-                            <Button
-                                variant="contained"
-                                color='inherit'
-                                style={{width:'30%', background:'#76ff03', marginLeft:300}}
-                                startIcon={<AddIcon/>}
-                            >
-                                Add Item
-                            </Button>
+
+
+
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color='inherit'
+                                    style={styles.container}
+                                    startIcon={<AddIcon/>}
+
+                                >
+                                    Add Item
+                                </Button>
+                                </form>
                             </Card>
+
 
                         </Typography>
 
 
             </Container>
-            </div>
+
+
+                </div>
         );
     }
 }
