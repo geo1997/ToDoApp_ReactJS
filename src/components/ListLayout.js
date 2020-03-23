@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
-import Card from '@material-ui/core/Card';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -37,8 +36,11 @@ const useStyles = makeStyles(theme => ({
 
 const ToDoList = (props) =>{
     const classes = useStyles();
-    const [dense, ] = React.useState(false);
-    const items = props.items;
+    const [dense ] = React.useState(false);
+    const items = props.items
+    const clearList = props.clearList;
+    const deleteItem = props.deleteItem;
+    const updateItem = props.updateItem;
 
 
     const listItems = item =>{
@@ -46,10 +48,12 @@ const ToDoList = (props) =>{
     };
 
 
-    return(
-        <div >
 
-            <Grid container spacing={0} justify='center' style={{marginTop:-150}}>
+
+    return(
+        <div  >
+
+            <Grid container spacing={0} justify='center' style={{marginTop:-150}} >
                 <Grid item xs={12} md={6}>
                     <Typography variant="h6" className={classes.title}>
                         To do List
@@ -57,7 +61,7 @@ const ToDoList = (props) =>{
 
                     <div className={classes.demo}>
                         <List dense={dense}>
-                            <Card className={classes.cardWidth} variant='outlined' >
+                            {/*<Card className={classes.cardWidth} variant='outlined' >*/}
                             {items.map(x=> (
                                 <ListItem key={x.id}>
 
@@ -67,10 +71,16 @@ const ToDoList = (props) =>{
                                     />
                                     <ListItemSecondaryAction>
 
-                                        <IconButton edge="end" aria-label="edit" style={{color:green[800]}}>
+                                        <IconButton onClick={() =>updateItem(x.id)}
+                                                    edge="end"
+                                                    aria-label="edit"
+                                                    style={{color:green[800]}}>
                                             <EditIcon />
                                         </IconButton>
-                                        <IconButton edge="end" aria-label="delete" style={{color:red[800]}}>
+                                        <IconButton onClick={() =>deleteItem(x.id)}
+                                                    edge="end"
+                                                    aria-label="delete"
+                                                    style={{color:red[800]}}>
                                             <DeleteIcon />
                                         </IconButton>
 
@@ -79,7 +89,7 @@ const ToDoList = (props) =>{
                                 </ListItem>
 
                             ) )}
-                            </Card>
+                            {/*</Card>*/}
                         </List>
                     </div>
 
@@ -88,7 +98,7 @@ const ToDoList = (props) =>{
                         color='inherit'
                         style={{ background:'#d50000',width:'100%',color:'white'}}
                         size="large"
-
+                        onClick={clearList}
                         startIcon={<ClearAllIcon/>}
                     >
                         Clear All

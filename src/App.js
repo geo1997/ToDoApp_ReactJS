@@ -38,7 +38,7 @@ handleInput = e =>{
         if(typedItem.text !==" "){
             const typedItems=[...this.state.items,typedItem];
             this.setState({
-                items:typedItems,
+                items:typedItems.reverse(),
                 newItem:{
                     id:'',
                     items: ''
@@ -47,20 +47,46 @@ handleInput = e =>{
         }
     };
 
+clearList = () =>{
+    this.setState({
+    items:[]
+    })
+};
 
+deleteItem = id =>{
+    const selectedItem = this.state.items.filter(item =>
+    item.id !==id);
+    this.setState({
+        items:selectedItem
+    });
+};
 
+updateItem = id =>{
+    const selectedItem = this.state.items.filter(item =>
+        item.id !==id);
+
+    const ItemToBeEdittedId=
+        this.state.items.find(item => item.id ===id);
+    console.log(ItemToBeEdittedId);
+    this.setState({
+        items:selectedItem,
+    })
+};
 
     render() {
         return (
-            <div>
+            <div style={{position:'static'}}>
                 <HeaderBar/>
                 <InputForm newItem={this.state.newItem.itemText}
                            addItem={this.addItem}
                            handleInput ={this.handleInput}
 
                          />
-                <ListLayout items={this.state.items}/>
 
+                             <ListLayout items={this.state.items}
+                                         clearList={this.clearList}
+                                         deleteItem={this.deleteItem}
+                                         updateItem={this.updateItem}/>
 
 
 

@@ -26,7 +26,7 @@ class InputForm extends Component {
         const { newItem, addItem,handleInput } =this.props;
         return (
                 <div>
-                    <Container maxWidth="md" >
+                    <Container maxWidth="md"  >
 
                         <Typography component="div" style={{  borderColor:'#00c853',height: '50vh' ,marginTop:15}}>
                             <Card   style={{  height: '30vh' }}>
