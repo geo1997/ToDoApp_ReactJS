@@ -4,17 +4,29 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography'
 import AddIcon from '@material-ui/icons/Add'
+import EditIcon from '@material-ui/icons/Edit';
 
 
 import Card from '@material-ui/core/Card';
 
 const styles = {
-    container: {
+    edit: {
 
         width:'40%',
          marginLeft:270,
-        background:'#76ff03'
-    }
+        background:'#76ff03',
+
+    },
+    add:{
+        width:'40%',
+        marginLeft:270,
+        background:'#18ffff'
+
+    },
+    root: {
+        minHeight: 200,
+    },
+
 };
 
 
@@ -23,22 +35,57 @@ class InputForm extends Component {
 
 
     render() {
-        const { newItem, addItem,handleInput } =this.props;
+        const { newItem, addItem,handleInput,updateItem} =this.props;
+
+
+
+        const buttonChange = () =>{
+          if(!updateItem){
+                return(
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color='inherit'
+                        style={styles.add}
+                        startIcon={<EditIcon/>}
+
+                    >
+                        Add Item
+                    </Button>
+
+                )
+            }else{
+                return (
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color='inherit'
+                        style={styles.edit}
+                        startIcon={<EditIcon/>}
+
+                    >
+                        Edit Item
+                    </Button>
+                )
+          }
+        };
+
         return (
                 <div>
                     <Container maxWidth="md"  >
-
-                        <Typography component="div" style={{  borderColor:'#00c853',height: '50vh' ,marginTop:15}}>
-                            <Card   style={{  height: '30vh' }}>
+                        {/*marginTop:15*/}
+                        <Typography component="div" style={{  borderColor:'#00c853' }}>
+                            {/*style={{  height: '30vh' }}*/}
+                            <Card   style={styles.root}>
                             <Typography variant="h3"  color="secondary"  style={{fontFamily:'Roboto'}}>
                                Input Todo
                             </Typography>
-                                <form onSubmit={addItem}>
+                                <form onSubmit={addItem} autoComplete='off' >
                     <TextField
 
                         id="outlined-full-width"
                         label="Input"
-                        style={{  marginTop:30,width:'90%' , marginLeft:40}}
+                        style={{  width:'90%',marginTop:30 ,marginLeft:40 }}
                         placeholder="Add A Todo Item "
 
                         margin="normal"
@@ -51,20 +98,13 @@ class InputForm extends Component {
                         value={newItem}
                         onChange={handleInput}
 
+                        //error{newItem === ""}
+
+
+
                     />
 
-
-
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    color='inherit'
-                                    style={styles.container}
-                                    startIcon={<AddIcon/>}
-
-                                >
-                                    Add Item
-                                </Button>
+                                    {buttonChange()}
                                 </form>
                             </Card>
 

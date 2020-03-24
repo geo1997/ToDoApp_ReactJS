@@ -15,20 +15,18 @@ import { red } from '@material-ui/core/colors';
 import { green } from '@material-ui/core/colors';
 
 
+
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        maxWidth: 752,
-    },
+
     demo: {
         backgroundColor: theme.palette.background.paper,
     },
     title: {
         margin: theme.spacing(4, 0, 2),
     },
-    cardWith:{
-        Width:300
-    }
+    root: {
+        minHeight: 170,
+    },
 
 
 }));
@@ -37,33 +35,60 @@ const useStyles = makeStyles(theme => ({
 const ToDoList = (props) =>{
     const classes = useStyles();
     const [dense ] = React.useState(false);
-    const items = props.items
+
     const clearList = props.clearList;
+    const items = props.items;
     const deleteItem = props.deleteItem;
     const updateItem = props.updateItem;
+    const strikeList = props.strikeList;
 
+    // React.useEffect(
+    //     () => {
+    //         setItems(items)
+    //     },
+    //     [props.items]
+    // )
 
     const listItems = item =>{
         return <div key={item.id}>{item.itemText}</div>
     };
 
 
+        const completed = (id) => {
+
+            document.getElementById(id).style.textDecoration='line-through';
+            return true
+        };
+
+
+
+        const strikeTextMethod = (id)=>{
+            // const index = items.findIndex(x=> x.id ===id);
+            // const newItems = [items[index], ...items.slice(0, index - 1), ...items.slice(index + 1)];
+            // setItems(newItems);
+            completed(id);
+
+        };
+
 
 
     return(
-        <div  >
+        <div >
 
-            <Grid container spacing={0} justify='center' style={{marginTop:-150}} >
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h6" className={classes.title}>
-                        To do List
+
+            <Grid container  justify='center' alignContent='center'  >
+                <Grid item xs={12} md={6}  >
+                    <Typography variant="h5" className={classes.title} gutterBottom>
+                        To do List - <Typography variant='caption' >
+                         Click on an Item to Complete
+                    </Typography>
                     </Typography>
 
                     <div className={classes.demo}>
-                        <List dense={dense}>
-                            {/*<Card className={classes.cardWidth} variant='outlined' >*/}
-                            {items.map(x=> (
-                                <ListItem key={x.id}>
+                        <List dense={dense} >
+
+                            {items.slice(0).reverse().map(x=> (
+                                <ListItem key={x.id} button id={x.id}  onClick={() => strikeTextMethod(x.id)} divider>
 
                                     <ListItemText
                                         primary={listItems(x)}
@@ -89,7 +114,7 @@ const ToDoList = (props) =>{
                                 </ListItem>
 
                             ) )}
-                            {/*</Card>*/}
+
                         </List>
                     </div>
 
@@ -105,6 +130,7 @@ const ToDoList = (props) =>{
                     </Button>
                 </Grid>
             </Grid>
+
 
             <br/>
 
