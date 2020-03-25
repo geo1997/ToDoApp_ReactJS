@@ -7,20 +7,22 @@ import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import EditIcon from '@material-ui/icons/Edit';
 import Card from '@material-ui/core/Card';
-import { sizing } from '@material-ui/system';
-import Box from '@material-ui/core/Box';
+import CardActions from '@material-ui/core/CardActions';
+import { useTheme } from "@material-ui/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
-import Toolbar from "@material-ui/core/Toolbar";
+
 
 const styles = {
     edit: {
 
-        width:'40%',
-        marginLeft:270,
+        width:'100%',
+
 
 
         background:'#76ff03',
+        size:'large'
 
     },
     add:{
@@ -33,7 +35,9 @@ const styles = {
     },
     root: {
         minHeight: 210,
-        minWidth:100
+        minWidth:300,
+        padding: 10
+
 
     },
 
@@ -43,6 +47,7 @@ const styles = {
 
 
 class InputForm extends Component {
+
     state = {
         errorState: false
     };
@@ -54,9 +59,9 @@ class InputForm extends Component {
         });
     };
 
+
     render() {
         const { newItem,handleInput,updateItem} =this.props;
-
 
 
         const buttonChange = () =>{
@@ -94,7 +99,8 @@ class InputForm extends Component {
 
         return (
                 <div>
-                    <Container maxWidth="md"  >
+                    <Grid container  justify='center' alignContent='center'  >
+                        <Grid item xs={12} md={6}  >
                         {/*marginTop:15*/}
                         <Typography component="div" style={{  borderColor:'#00c853' }}>
                             {/*style={{  height: '30vh' }}*/}
@@ -106,11 +112,14 @@ class InputForm extends Component {
                                 <form onSubmit={this.validateItem} autoComplete='off' >
 
 
+                                    <Grid container  justify='center' alignContent='center'  >
+                                        <Grid item xs={12}   >
+
                                             <TextField
 
                                                 id="outlined-full-width"
                                                 label="Input"
-                                                style={{  width:'90%',marginTop:30 ,marginLeft:40 }}
+                                                style={{  width:'100%',marginTop:30 }}
                                                 placeholder="Add A Todo Item "
 
                                                 margin="normal"
@@ -133,15 +142,21 @@ class InputForm extends Component {
 
                                             />
 
+                                        </Grid>
 
-
+                                    </Grid>
+                                    <CardActions>
                                     <Grid container  justify='center' alignContent='center'  >
                                         <Grid item xs={12} md={6}  >
+
                                         {buttonChange()}
+
+
                                         </Grid>
+
                                     </Grid>
 
-
+                                    </CardActions>
 
 
 
@@ -154,9 +169,9 @@ class InputForm extends Component {
                         </Typography>
 
 
-            </Container>
+                         </Grid>
 
-
+                    </Grid>
                 </div>
         );
     }
