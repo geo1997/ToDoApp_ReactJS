@@ -11,8 +11,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
-import { red } from '@material-ui/core/colors';
-import { green } from '@material-ui/core/colors';
+
 
 
 
@@ -40,37 +39,21 @@ const ToDoList = (props) =>{
     const items = props.items;
     const deleteItem = props.deleteItem;
     const updateItem = props.updateItem;
-    const strikeList = props.strikeList;
-
-    // React.useEffect(
-    //     () => {
-    //         setItems(items)
-    //     },
-    //     [props.items]
-    // )
+    const handleClick = props.handleClick;
 
     const listItems = item =>{
         return <div key={item.id}>{item.itemText}</div>
     };
 
 
-        const completed = (id) => {
+    // const completed = (id) => {
+    //     document.getElementById(id).style.textDecoration = 'line-through';
+    //     return true;
+    // };
 
-            document.getElementById(id).style.textDecoration='line-through';
-            return true
-        };
-
-
-
-        const strikeTextMethod = (id)=>{
-            // const index = items.findIndex(x=> x.id ===id);
-            // const newItems = [items[index], ...items.slice(0, index - 1), ...items.slice(index + 1)];
-            // setItems(newItems);
-            completed(id);
-
-        };
-
-
+    const strikeTextMethod = id => {
+        handleClick(id);
+    };
 
     return(
         <div >
@@ -79,7 +62,7 @@ const ToDoList = (props) =>{
             <Grid container  justify='center' alignContent='center'  >
                 <Grid item xs={12} md={6}  >
                     <Typography variant="h5" className={classes.title} gutterBottom>
-                        To do List - <Typography variant='caption' >
+                        To do List  <Typography variant='caption' >
                          Click on an Item to Complete
                     </Typography>
                     </Typography>
@@ -87,8 +70,13 @@ const ToDoList = (props) =>{
                     <div className={classes.demo}>
                         <List dense={dense} >
 
-                            {items.slice(0).reverse().map(x=> (
-                                <ListItem key={x.id} button id={x.id}  onClick={() => strikeTextMethod(x.id)} divider>
+                            {items.map(x=> (
+                                <ListItem key={x.id} button id={x.id}
+                                          style={{
+                                              textDecoration: x.isStriked ? "line-through" : "initial"
+                                          }}
+
+                                          onClick={() => strikeTextMethod(x.id)} divider>
 
                                     <ListItemText
                                         primary={listItems(x)}
@@ -99,13 +87,13 @@ const ToDoList = (props) =>{
                                         <IconButton onClick={() =>updateItem(x.id)}
                                                     edge="end"
                                                     aria-label="edit"
-                                                    style={{color:green[800]}}>
+                                                    style={{color:'#76ff03'}}>
                                             <EditIcon />
                                         </IconButton>
                                         <IconButton onClick={() =>deleteItem(x.id)}
                                                     edge="end"
                                                     aria-label="delete"
-                                                    style={{color:red[800]}}>
+                                                    style={{color:'#d50000'}}>
                                             <DeleteIcon />
                                         </IconButton>
 
@@ -122,7 +110,7 @@ const ToDoList = (props) =>{
                         variant="text"
                         color='inherit'
                         style={{ background:'#d50000',width:'100%',color:'white'}}
-                        size="large"
+                        fontsize="inherit"
                         onClick={clearList}
                         startIcon={<ClearAllIcon/>}
                     >

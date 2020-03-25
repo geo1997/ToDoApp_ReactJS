@@ -5,6 +5,7 @@ import HeaderBar from "./components/HeaderBar";
 
 import ListLayout from "./components/ListLayout";
 
+
 class App extends Component {
 
     constructor(props) {
@@ -32,27 +33,29 @@ handleInput = e =>{
 
 };
 
-    addItem = e =>{
+    addItem = e => {
         e.preventDefault();
-         const typedItem = this.state.newItem;
+        const typedItem = this.state.newItem;
 
-        if(typedItem.itemText !==""){
-            const typedItems=[...this.state.items,typedItem];
+        if (typedItem.itemText !== "") {
+            const typedItems = [
+                { ...typedItem, isStriked: false },
+                ...this.state.items
+            ];
             this.setState({
-                items:typedItems,
-                newItem:{
-                    id:'',
-                    itemText: ''
+                items: typedItems,
+                newItem: {
+                    id: "",
+                    itemText: ""
                 },
-                updateItem:false
-            })
-        }else{
-
+                updateItem: false
+            });
+        } else {
         }
-
     };
 
-clearList = () =>{
+
+    clearList = () =>{
     this.setState({
     items:[]
     })
@@ -83,19 +86,26 @@ updateItem = id =>{
     })
 };
 
-strikeList = id =>{
-    const strikeItem = this.state.items.filter(item =>
-        item.id !==id);
-    this.setState({
-        items:strikeItem
-    });
-}
+    handleClick = id => {
+        const selectedItem = this.state.items.find(item => item.id === id);
+        if (selectedItem.isStriked === false)
+            this.setState({
+                items: [
+                    ...this.state.items.filter(item => item.id !== id),
+                    { ...selectedItem, isStriked: true }
+                ]
+            });
+    };
+
+
 
     render() {
         return (
-            <div >
+            <div  >
+
 
                 <HeaderBar/>
+
                 <InputForm newItem={this.state.newItem.itemText}
                            addItem={this.addItem}
                            handleInput ={this.handleInput}
@@ -107,7 +117,7 @@ strikeList = id =>{
                                          clearList={this.clearList}
                                          deleteItem={this.deleteItem}
                                          updateItem={this.updateItem}
-                                         strikeList={this.strikeList}
+                                         handleClick={this.handleClick}
                                         />
 
 
