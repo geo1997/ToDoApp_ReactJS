@@ -25,14 +25,15 @@ const styles = {
     },
     add:{
 
-        width:'40%',
-        marginLeft:270,
+        width:'100%',
+
         background:'#18ffff',
         size:'large'
 
     },
     root: {
         minHeight: 210,
+        minWidth:100
 
     },
 
@@ -134,9 +135,11 @@ class InputForm extends Component {
 
 
 
-
+                                    <Grid container  justify='center' alignContent='center'  >
+                                        <Grid item xs={12} md={6}  >
                                         {buttonChange()}
-
+                                        </Grid>
+                                    </Grid>
 
 
 
