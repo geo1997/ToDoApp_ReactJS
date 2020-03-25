@@ -4,33 +4,34 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography'
 import AddIcon from '@material-ui/icons/Add';
-
-
+import Grid from '@material-ui/core/Grid';
 import EditIcon from '@material-ui/icons/Edit';
-
-
 import Card from '@material-ui/core/Card';
+import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const styles = {
     edit: {
 
-        width:'40%',
-         marginLeft:270,
+        width:'100%',
+
         background:'#76ff03',
 
     },
     add:{
-        width:'40%',
-        marginLeft:270,
+        width:'100%',
+
         background:'#18ffff',
         
 
     },
     root: {
         minHeight: 210,
+
     },
 
 };
+
 
 
 
@@ -123,8 +124,19 @@ class InputForm extends Component {
 
                     />
 
-                                    {buttonChange()}
+                                    <Grid container  justify='center' alignContent='center'  >
+                                        <Grid item xs={12} md={6}>
+                                            {buttonChange()}
+                                        </Grid>
+
+                                        </Grid>
+
+
+
+
+
                                 </form>
+
                             </Card>
 
 

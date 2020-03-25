@@ -6,15 +6,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 
-const useStyles = makeStyles(theme => ({
-    title: {
-        flexGrow: 1,
-        textAlign: 'center',
-    },
-}));
+// const useStyles = makeStyles(theme => ({
+//     title: {
+//         flexGrow: 1,
+//         textAlign: 'center',
+//     },
+// }));
 
 const HeaderBar = () =>{
-    const classes = useStyles();
+    //const classes = useStyles();
         return(
             <div>
                <AppBar  position='static' style={{ background: '#263238' }}>
