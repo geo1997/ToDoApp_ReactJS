@@ -7,22 +7,28 @@ import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import EditIcon from '@material-ui/icons/Edit';
 import Card from '@material-ui/core/Card';
+import { sizing } from '@material-ui/system';
+import Box from '@material-ui/core/Box';
+
 import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import Toolbar from "@material-ui/core/Toolbar";
 
 const styles = {
     edit: {
 
-        width:'100%',
+        width:'40%',
+        marginLeft:270,
+
 
         background:'#76ff03',
 
     },
     add:{
-        width:'100%',
 
+        width:'40%',
+        marginLeft:270,
         background:'#18ffff',
-        
+        size:'large'
 
     },
     root: {
@@ -97,39 +103,41 @@ class InputForm extends Component {
                                All about your needs
                             </Typography>
                                 <form onSubmit={this.validateItem} autoComplete='off' >
-                    <TextField
-
-                        id="outlined-full-width"
-                        label="Input"
-                        style={{  width:'90%',marginTop:40 ,marginLeft:40 }}
-                        placeholder="Add A Todo Item "
-
-                        margin="normal"
-
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        error={this.state.errorState}
-                        helperText={
-                            this.state.errorState && "Item name can't be blank"
-                        }
-                        size="large"
-                        variant="outlined"
-                        value={newItem}
-                        onChange={handleInput}
 
 
+                                            <TextField
+
+                                                id="outlined-full-width"
+                                                label="Input"
+                                                style={{  width:'90%',marginTop:30 ,marginLeft:40 }}
+                                                placeholder="Add A Todo Item "
+
+                                                margin="normal"
+
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                error={this.state.errorState}
+                                                helperText={
+                                                    this.state.errorState && "Item name can't be blank"
+                                                }
+                                                size="large"
+                                                variant="outlined"
+                                                value={newItem}
+                                                onChange={handleInput}
 
 
 
-                    />
 
-                                    <Grid container  justify='center' alignContent='center'  >
-                                        <Grid item xs={12} md={6}>
-                                            {buttonChange()}
-                                        </Grid>
 
-                                        </Grid>
+                                            />
+
+
+
+
+                                        {buttonChange()}
+
+
 
 
 
