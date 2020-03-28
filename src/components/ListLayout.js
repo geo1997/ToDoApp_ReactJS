@@ -41,15 +41,11 @@ const ToDoList = (props) =>{
     const updateItem = props.updateItem;
     const handleClick = props.handleClick;
 
+    //items are listed
     const listItems = item =>{
         return <div key={item.id}>{item.itemText}</div>
     };
 
-
-    // const completed = (id) => {
-    //     document.getElementById(id).style.textDecoration = 'line-through';
-    //     return true;
-    // };
 
     const strikeTextMethod = id => {
         handleClick(id);
@@ -130,4 +126,3 @@ const ToDoList = (props) =>{
 export default ToDoList;
 
 
-//

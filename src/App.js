@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-
 import InputForm from "./components/InputForm";
 import HeaderBar from "./components/HeaderBar";
-
 import ListLayout from "./components/ListLayout";
+
+/* this is a simple
+* to do application created using ReactJS,
+* a user is capable of adding updating and deleting a
+* to do.*/
+
 
 
 class App extends Component {
@@ -22,6 +26,7 @@ class App extends Component {
         this.addItem = this.addItem.bind(this);
     }
 
+    //handling the input on the text field
 handleInput = e =>{
         this.setState({
             newItem:{
@@ -33,6 +38,7 @@ handleInput = e =>{
 
 };
 
+    // once the user clicks on the add button the textfield is added to a list
     addItem = e => {
         e.preventDefault();
         const typedItem = this.state.newItem;
@@ -54,13 +60,14 @@ handleInput = e =>{
         }
     };
 
-
+//method to clear all the to dos in the array onclick
     clearList = () =>{
     this.setState({
     items:[]
     })
 };
 
+    //method to delete a particular to do item
 deleteItem = id =>{
     const selectedItem = this.state.items.filter(item =>
     item.id !==id);
@@ -69,6 +76,7 @@ deleteItem = id =>{
     });
 };
 
+//method to update a particulr to do item
 updateItem = id =>{
     const selectedItem = this.state.items.filter(item =>
         item.id !==id);
@@ -86,7 +94,10 @@ updateItem = id =>{
     })
 };
 
-    handleClick = id => {
+/*method to change the state of an item, when a user clicks on an item on the list to
+show that an item has been completed its state is converted to the required state(isStriked:true)
+ */
+handleClick = id => {
         const selectedItem = this.state.items.find(item => item.id === id);
         if (selectedItem.isStriked === false)
             this.setState({
