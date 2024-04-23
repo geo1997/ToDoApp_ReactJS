@@ -41,6 +41,6 @@
   },
   "devDependencies": {
     "@material-ui/icons": "^4.9.1",
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^5.0.0"
   }
 }
